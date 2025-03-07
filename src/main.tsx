@@ -8,7 +8,7 @@ import { store } from "./app/store.ts";
 createRoot(document.getElementById("root")!).render(
   <Provider store={store}>
     <BrowserRouter>
-      <App/>
+      <App />
     </BrowserRouter>
-  </Provider>
+  </Provider>,
 );

@@ -4,8 +4,8 @@ import { Outlet } from "react-router-dom";
 const AdminLayout = () => {
   return (
     <>
-      <AdminToolbar/>
-      <Outlet/>
+      <AdminToolbar />
+      <Outlet />
     </>
   );
 };

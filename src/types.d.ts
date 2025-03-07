@@ -1,13 +1,18 @@
-interface DishForm {
+export interface DishForm {
   imageUrl: string;
   name: string;
   price: number;
 }
 
-interface DishApi {
+export interface DishApi {
   [id: string]: DishForm;
 }
 
-interface Dish extends DishForm {
+export interface Dish extends DishForm {
   id: string;
+}
+
+export interface UpdateDish {
+  id: string;
+  dish: DishForm;
 }
