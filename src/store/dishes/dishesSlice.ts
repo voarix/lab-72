@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
-  createDish,
+  createDish, deleteDish,
   fetchDishes,
   fetchOneDishById,
   updateDish,
@@ -15,6 +15,7 @@ interface DishesState {
   oneDish: DishForm | null;
   creatingLoading: boolean;
   updateLoading: boolean;
+  deleteLoading: boolean | string;
 }
 
 const initialState: DishesState = {
@@ -24,6 +25,7 @@ const initialState: DishesState = {
   oneDish: null,
   creatingLoading: false,
   updateLoading: false,
+  deleteLoading: false,
 };
 
 export const selectDishes = (state: RootState) => state.dishes.items;
@@ -36,6 +38,8 @@ export const selectCreateDishLoading = (state: RootState) =>
   state.dishes.creatingLoading;
 export const selectFetchOneDishLoading = (state: RootState) =>
   state.dishes.fetchOneLoading;
+export const selectDeleteDishesLoading = (state: RootState) => state.dishes.deleteLoading;
+
 
 const dishesSlice = createSlice({
   name: "dishes",
@@ -102,6 +106,16 @@ const dishesSlice = createSlice({
       )
       .addCase(updateDish.rejected, (state) => {
         state.updateLoading = false;
+      })
+
+      .addCase(deleteDish.pending, (state, {meta}) => {
+        state.deleteLoading = meta.arg;
+      })
+      .addCase(deleteDish.fulfilled, (state) => {
+        state.deleteLoading = false;
+      })
+      .addCase(deleteDish.rejected, (state) => {
+        state.deleteLoading = false;
       });
   },
 });
