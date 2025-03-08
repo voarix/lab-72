@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAppSelector } from "../../../app/hooks.ts";
 import { selectCartDishes } from "../../../store/cart/cartSlice.ts";
 import CartDishes from "./CartDishes.tsx";
+import Modal from "../../../UI/Modal.tsx";
 
 const Cart = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -17,7 +18,7 @@ const Cart = () => {
           className="btn btn-primary w-100 mt-3"
           onClick={() => setShowModal(!showModal)}
         >
-          Make order
+          Checkout
         </button>
       </>
     );
@@ -28,6 +29,7 @@ const Cart = () => {
       <h4>Cart</h4>
       <hr />
       {cart}
+      <Modal show={showModal} onClose={() => setShowModal(false)} />
     </div>
   );
 };

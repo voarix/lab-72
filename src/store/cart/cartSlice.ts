@@ -17,12 +17,12 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addDish: (state, { payload: dish }: PayloadAction<Dish>) => {
-      const exisitingIndex = state.cartDishes.findIndex((cartItem) => {
+      const existingIndex = state.cartDishes.findIndex((cartItem) => {
         return cartItem.dish.id === dish.id;
       });
 
-      if (exisitingIndex !== -1) {
-        state.cartDishes[exisitingIndex].amount++;
+      if (existingIndex !== -1) {
+        state.cartDishes[existingIndex].amount++;
       } else {
         state.cartDishes.push({ dish, amount: 1 });
       }
@@ -30,28 +30,20 @@ const cartSlice = createSlice({
     clearCart: (state) => {
       state.cartDishes = [];
     },
-    updateCartDishes: (state, { payload: dishes }: PayloadAction<Dish[]>) => {
-      const newCartDishes: CartDish[] = [];
-
-      state.cartDishes.forEach((cartDish) => {
-        const existingDish = dishes.find(
-          (dish) => dish.id === cartDish.dish.id,
-        );
-
-        if (!existingDish) {
-          return;
-        }
-
-        newCartDishes.push({
-          ...cartDish,
-          dish: existingDish,
-        });
+    deleteDish: (state, { payload: dishId }: PayloadAction<string>) => {
+      const existingIndex = state.cartDishes.findIndex((cartItem) => {
+        return cartItem.dish.id === dishId;
       });
 
-      state.cartDishes = newCartDishes;
-    },
-  },
-});
+      if (existingIndex !== -1) {
+        if (state.cartDishes[existingIndex].amount > 1) {
+          state.cartDishes[existingIndex].amount--;
+        } else {
+          state.cartDishes.splice(existingIndex, 1);
+        }
+      }
+    }
+}});
 
 export const cartReducer = cartSlice.reducer;
-export const { addDish, clearCart, updateCartDishes } = cartSlice.actions;
+export const { addDish, clearCart, deleteDish } = cartSlice.actions;

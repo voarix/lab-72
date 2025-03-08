@@ -21,3 +21,11 @@ export interface CartDish {
   dish: Dish;
   amount: number;
 }
+
+export interface Order {
+  [id: string]: number;
+}
+
+export interface OrdersState {
+  [id: string]: Order;
+}
