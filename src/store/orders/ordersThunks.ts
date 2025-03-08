@@ -17,3 +17,11 @@ export const fetchOrders = createAsyncThunk<OrdersState, void>(
     return response.data || {};
   }
 );
+
+export const deleteOrder = createAsyncThunk<string, string>(
+  "orders/deleteOrder",
+  async (orderId) => {
+    await axiosApi.delete(`/orders/${orderId}.json`);
+    return orderId;
+  }
+);
