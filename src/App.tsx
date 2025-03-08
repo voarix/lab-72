@@ -4,6 +4,8 @@ import AdminDishes from "./Containers/Admin/AdminDishes.tsx";
 import AdminLayout from "./Containers/Admin/AdminLayout.tsx";
 import AdminNewDish from "./Containers/Admin/AdminNewDish.tsx";
 import AdminEditDish from "./Containers/Admin/AdminEditDish.tsx";
+import CustomerLayout from "./Containers/Customer/CustomerLayout.tsx";
+import CustomerHome from "./Containers/Customer/CustomerHome.tsx";
 
 const App = () => {
   return (
@@ -14,6 +16,10 @@ const App = () => {
           <Route path="new-dish" element={<AdminNewDish />} />
           <Route path="edit/:idDish" element={<AdminEditDish />} />
         </Route>
+        <Route path="/" element={<CustomerLayout />}>
+          <Route index path="/" element={<CustomerHome />} />
+        </Route>
+        <Route path="*" element={<h1>Not page found</h1>} />
       </Routes>
     </>
   );

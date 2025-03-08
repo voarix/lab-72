@@ -16,3 +16,8 @@ export interface UpdateDish {
   id: string;
   dish: DishForm;
 }
+
+export interface CartDish {
+  dish: Dish;
+  amount: number;
+}

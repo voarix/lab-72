@@ -1,4 +1,4 @@
-import AdminToolbar from "../../components/AdminToolbar.tsx";
+import AdminToolbar from "../../components/Admin/AdminToolbar.tsx";
 import { Outlet } from "react-router-dom";
 
 const AdminLayout = () => {

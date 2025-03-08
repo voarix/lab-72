@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../app/hooks.ts";
+import { useAppDispatch, useAppSelector } from "../../app/hooks.ts";
 import {
   selectFetchOneDishLoading,
   selectOneDish,
-} from "../store/dishes/dishesSlice.ts";
-import { fetchOneDishById } from "../store/dishes/dishesThunks.ts";
-import ButtonSpinner from "./UI/Spinner/ButtonSpinner/ButtonSpinner.tsx";
+} from "../../store/dishes/dishesSlice.ts";
+import { fetchOneDishById } from "../../store/dishes/dishesThunks.ts";
+import ButtonSpinner from "../../UI/Spinner/ButtonSpinner/ButtonSpinner.tsx";
 import { Spinner } from "react-bootstrap";
-import { DishForm } from "../types";
+import { DishForm } from "../../types";
 
 interface Props {
   onSubmitFormToAddDish: (newDish: DishForm) => void;
@@ -52,9 +52,7 @@ const AdminDishForm: React.FC<Props> = ({
     }
   }, [fetchOneDish, idDish, oneDish]);
 
-  const inputChangeHandler = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
     setForm((prevState) => ({ ...prevState, [name]: value }));
   };

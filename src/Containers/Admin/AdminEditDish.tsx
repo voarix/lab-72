@@ -1,9 +1,12 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks.ts";
-import { clearOneDish, selectUpdateDishLoading } from "../../store/dishes/dishesSlice.ts";
+import {
+  clearOneDish,
+  selectUpdateDishLoading,
+} from "../../store/dishes/dishesSlice.ts";
 import { updateDish } from "../../store/dishes/dishesThunks.ts";
 import { DishForm } from "../../types";
-import AdminDishForm from "../../components/AdminDishForm.tsx";
+import AdminDishForm from "../../components/Admin/AdminDishForm.tsx";
 import { useEffect } from "react";
 
 const AdminEditDish = () => {
